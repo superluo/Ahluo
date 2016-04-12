@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true">
+	<property name="app_name" value="Ahluo"></property>
+	<property name="app" value="Ahluo"></property>
+    <property name="log_path" value="../log/${app_name}"/>
+    <property name="log_home" value="../log/${app_name}"/>
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd.HH:mm:ss.SSS} %level [%msg] %caller{1} </pattern>
+        </encoder>
+    </appender>
+    <appender name="DETAIL" class="ch.qos.logback.core.rolling.RollingFileAppender" additivity="false">
+        <File>${log_path}/${app_name}_detail.log</File>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd.HH:mm:ss.SSS} %level [%msg] %caller{1} </pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/${APP}_detail.log.%d{yyyyMMdd}</fileNamePattern>
+        </rollingPolicy>
+    </appender>
+    <root level="DEBUG">
+        <appender-ref ref="DETAIL"/>
+        <appender-ref ref="CONSOLE"/>
+    </root>
+</configuration>
